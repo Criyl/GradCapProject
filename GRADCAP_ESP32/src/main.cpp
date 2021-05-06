@@ -17,23 +17,23 @@ bool drawTransition = true;
 
 void drawImage(const char32_t image[])
 {
-  for (int k = 0; k <= arr_width[arr_index_img] - 16; k++)
+  for (int offset = 0; offset <= get_width() - 16; offset++)
   {
     for (int r = 0; r < 16; r++)
       for (int c = 0; c < 16; c++)
       {
-        int i = r * 16 + c;
-        int j;
+        int index = r * 16 + c;
+        int source_index;
         if (r % 2 == 0)
-          j = r * arr_width[arr_index_img] + (15 - c) + k;
+          source_index = r * get_width() + (15 - c) + offset;
         else
-          j = r * arr_width[arr_index_img] + c + k;
+          source_index = r * get_width() + c + offset;
 
-        if (image[j])
+        if (image[source_index])
         {
-          long color = image[j];
+          long color = image[source_index];
 
-          pixels.setPixelColor(i, color);
+          pixels.setPixelColor(index, color);
           if (drawTransition)
           {
             pixels.show();
@@ -66,7 +66,7 @@ void loop()
   curr = get_image();
   drawTransition = get_transition();
   Serial.println(arr_index_img);
-  Serial.println(arr_width[arr_index_img]);
+  Serial.println(get_width());
   Serial.println(curr[2 * arr_width[arr_index_img]]);
   drawImage(curr);
 }
