@@ -1,5 +1,5 @@
 # Graduation Cap Project
-This repository is a project where I added an 16x16 led matrix for my graduation cap.
+This repository is a project where I added an 16x16 led matrix to my graduation cap.
 
 
 <p align="center">
